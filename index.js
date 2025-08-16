@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", function(){
             if(searchButton){
             searchButton.textContent = "Searching..."
             searchButton.disabled = true;
-          
+          console.log(url);
           }
 
-            //const response = await fetch(url);
+            const response = await fetch(url);
 
             const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
             const targetUrl = 'https://leetcode.com/graphql/';
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function(){
               redirect:"follow"
             };
 
-            const response = await fetch(proxyUrl+targetUrl, requestOptions);
+            //const response = await fetch(proxyUrl+targetUrl, requestOptions);
 
 
               if(!response.ok){
@@ -97,47 +97,47 @@ document.addEventListener("DOMContentLoaded", function(){
 
     
 
-    function displayuserData(parsedData) {
-        const totalQues = parsedData.data.allQuestionsCount[0].count;
-        const totalEasyQues = parsedData.data.allQuestionsCount[1].count;
-        const totalmediumQues = parsedData.data.allQuestionsCount[2].count;
-        const totalHardQues = parsedData.data.allQuestionsCount[3].count;
-        const solvedTotalQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[0].count;
-        const solvedTotalEasyQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[1].count;
-        const solvedTotalmediumQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[2].count;
-        const solvedTotalHardQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[3].count;
+    // function displayuserData(parsedData) {
+    //     const totalQues = parsedData.data.allQuestionsCount[0].count;
+    //     const totalEasyQues = parsedData.data.allQuestionsCount[1].count;
+    //     const totalmediumQues = parsedData.data.allQuestionsCount[2].count;
+    //     const totalHardQues = parsedData.data.allQuestionsCount[3].count;
+    //     const solvedTotalQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[0].count;
+    //     const solvedTotalEasyQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[1].count;
+    //     const solvedTotalmediumQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[2].count;
+    //     const solvedTotalHardQues = parsedData.data.matchedUser.submitStatsGlobal.acSubmissionNum[3].count;
         
-    //function displayuserData(parsedData) {
-    // const {
-    //     totalQues : totalQuestions = 0,
-    //     totalEasy: totalEasyQues = 0,
-    //     totalMedium: totalmediumQues = 0,
-    //     totalHard: totalHardQues = 0,
-    //     totalSolved: solvedTotalQues = 0,
-    //     easySolved: solvedTotalEasyQues = 0,
-    //     mediumSolved: solvedTotalmediumQues = 0,
-    //     hardSolved: solvedTotalHardQues = 0
-    // } = parsedData || {};
+    function displayuserData(parsedData) {
+    const {
+        totalQues : totalQuestions = 0,
+        totalEasy: totalEasyQues = 0,
+        totalMedium: totalmediumQues = 0,
+        totalHard: totalHardQues = 0,
+        totalSolved: solvedTotalQues = 0,
+        easySolved: solvedTotalEasyQues = 0,
+        mediumSolved: solvedTotalmediumQues = 0,
+        hardSolved: solvedTotalHardQues = 0
+    } = parsedData || {};
         updateProgress(solvedTotalEasyQues, totalEasyQues, easyLabel, easyProgressCircle);
         updateProgress(solvedTotalmediumQues, totalmediumQues, mediumLabel, mediumProgressCircle);
         updateProgress(solvedTotalHardQues, totalHardQues, hardLabel, hardProgressCircle);
 
-             const cardData = [
-               {label: "Overall Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[0].submissions},
-               {label: "Overall Easy Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[1].submissions},
-               {label: "Overall Medium Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[2].submissions},
-               {label: "Overall Hard Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[3].submissions}
-              ]
+            //  const cardData = [
+            //    {label: "Overall Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[0].submissions},
+            //    {label: "Overall Easy Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[1].submissions},
+            //    {label: "Overall Medium Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[2].submissions},
+            //    {label: "Overall Hard Submissions", value:parsedData.data.matchedUser.submitStatsGlobal.totalSubmissionNum[3].submissions}
+            //   ]
             
-console.log(cardData)
-cardStatsConstainer.innerHTML = cardData.map(
-  data => `
-    <div class = "card">
-    <h4>${data.label}</h4>
-    <p>${data.value}</p>
-    </div>
-    `
-).join("")
+// console.log(cardData)
+// cardStatsConstainer.innerHTML = cardData.map(
+//   data => `
+//     <div class = "card">
+//     <h4>${data.label}</h4>
+//     <p>${data.value}</p>
+//     </div>
+//     `
+// ).join("")
 
           }
 
